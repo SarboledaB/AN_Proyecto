@@ -1,5 +1,3 @@
-def f(x):
-    return x**5 - 3 * x**2 + 1.6
 
 def busquedas(f, x0, h, Nmax):
     """Método de busquedas
@@ -33,5 +31,3 @@ def busquedas(f, x0, h, Nmax):
         i += 1
 
     return xant, xact, i
-
-print(busquedas(f, -1, 0.1, 1000))
