@@ -12,13 +12,9 @@ def f(x):
 
 def f2(x): return x ** 2 - 1
 
-def df(x): return 2 * x
+def df(x): return 5 * x**4 - 6 * x
 
-def d2f(x): return 1
-
-def f3(x): return x ** 2 - 1
-
-def df3(x): return 2 * x
+def d2f(x): return 20 * x**3 - 6
 
 
 gx = lambda x: np.exp(-x)
@@ -26,18 +22,18 @@ gx = lambda x: np.exp(-x)
 while True:
     x = input("->")
     if x == '1':
-        print(busquedas(f, -1, 1.5, 1000))
+        print(busquedas(f, -1, 0.1, 1000))
     elif x == '2':
-        print(biseccion(f, 1, 1.5, 1000))
+        print(biseccion(f, -1, 1.5, 1000))
     elif x == '3':
-        print(raicesmlt(f2, df, d2f, 2))
+        print(raicesmlt(f, df, d2f, -1))
     elif x == '4':
-        print(newton(f3, df3, 2))
+        print(newton(f, df, -1))
     elif x == '5':
-        print(regla_falsa(f, 1, 1.5, 1000))
+        print(regla_falsa(f, -1, 1.5, 1000))
     elif x == '6':
-        print(secante(f, 1, 1.5, 1000))
+        print(secante(f, -1, 0, 1000))
     elif x == '7':
-        print(puntofijo( gx, 0.2, 1000, 0.001 ))
+        print(puntofijo(gx, -1, 1000))
     else:
         break

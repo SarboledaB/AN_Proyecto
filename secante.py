@@ -1,8 +1,7 @@
-
 def secante(f, x0, x1, Nmax, tol=1.0e-6):
     f0=f(x0)
     f1=f(x1)
-    e = abs(x1-x0) 
+    e = 1000
     cont=1
     while e>tol and cont<Nmax:
         xact=x1-f1*(x1-x0)/(f1-f0)
@@ -13,4 +12,6 @@ def secante(f, x0, x1, Nmax, tol=1.0e-6):
         f0=f1
         x1=xact
         f1=fact
+    if cont == Nmax:
+        return ("No se encontró el intervalo después de {} iteraciones").format(cont)
     return x1

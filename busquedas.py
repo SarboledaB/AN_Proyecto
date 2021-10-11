@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-def f(x):
-    return 1
-=======
->>>>>>> f434de9153a71eac44402e15ecd5183295f88c9d
 
 def busquedas(f, x0, h, Nmax):
     """Método de busquedas
@@ -18,23 +13,23 @@ def busquedas(f, x0, h, Nmax):
     --------
     a - Extremo izquierdo del intervalo
     b - Extremo derecho del intervalo
-    i, Número de iteraciones
+    cont, Número de iteraciones
     """
     xant = float(x0)
     fant = f(xant)
     xact = xant + h
     fact = f(xact)
-    i = 0
+    cont = 0
 
-    while i<Nmax:
+    while cont<Nmax:
         if fant*fact<0:
             break
         xant=xact
         fant=fact
         xact=xant+h
         fact=f(xact)
-        i += 1
-    if i == Nmax:
-        return ("No hubo convergencia después de {} iteraciones").format(i)
+        cont += 1
+    if cont == Nmax:
+        return ("No se encontró el intervalo después de {} iteraciones").format(cont)
 
-    return xant, xact, i
+    return xant, xact, cont

@@ -4,11 +4,9 @@ def biseccion(f, a, b, Nmax, tol=1.0e-6):
     e=1000
     cont = 1;
     if a > b:
-        print("Intervalo mal definido")
+        return ("Intervalo mal definido")
     if f(a) * f(b) >= 0.0:
-        print("La función debe cambiar de signo en el intervalo")
-    if tol <= 0:
-        print("La cota de error debe ser un número positivo")
+        return ("La función debe cambiar de signo en el intervalo")
     x = (a + b) / 2.0
     while cont<Nmax:
         if b - a < tol:
@@ -19,3 +17,5 @@ def biseccion(f, a, b, Nmax, tol=1.0e-6):
             b = x
         x = (a + b) / 2.0
         cont=cont+1;
+    if cont == Nmax:
+        return ("No hubo convergencia después de {} iteraciones").format(cont)

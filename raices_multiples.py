@@ -1,9 +1,9 @@
-def raicesmlt(f, df, d2f, x_0, maxiter=50, xtol=1.0e-6, ftol=1.0e-6):
+def raicesmlt(f, df, d2f, x_0, Nmax=50, xtol=1.0e-6, ftol=1.0e-6):
     x = float(x_0) # Se convierte a número de coma flotante
-    for i in range(maxiter):
+    for cont in range(Nmax):
         dx = -f(x) * df(x) / (df(x) ** 2 - f(x) * d2f(x))
         x = x + dx
         E = abs(dx / x)
         if E < xtol:
-            return x, E, i
-    raise RuntimeError("No hubo convergencia después de {} iteraciones").format(maxiter)
+            return x, E, cont
+    return ("No hubo convergencia después de {} iteraciones").format(Nmax)

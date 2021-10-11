@@ -1,18 +1,16 @@
 import numpy as np
 
 def puntofijo(g, x0, Nmax, tol=1.0e-6):
-    acum = 1
+    cont = 1
     x = g(x0)
     e = abs(x-x0)
-    while(e>=tol and acum<=Nmax ):
+    while(e>=tol and cont<=Nmax ):
         x0 = x
         x = g(x0)
         e = abs(x-x0)
-        acum = acum + 1
+        cont = cont + 1
     resp = x
     
-    if (acum>=Nmax ):
-        resp = np.nan
+    if (cont>=Nmax ):
+        return ("No hubo convergencia después de {} iteraciones").format(cont)
     return(resp)
-
-
