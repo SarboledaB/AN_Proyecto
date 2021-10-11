@@ -1,2 +1,2 @@
-# AN_Proyecto
-Proyecto universitario de análisis numérico
+# AN_Project
+Numerical analysis university project 
