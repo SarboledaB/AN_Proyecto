@@ -1,5 +1,5 @@
 
-def secante(f, a, b, Nmax, tol=1.0e-6):
+def regla_falsa(f, a, b, Nmax, tol=1.0e-6):
     fa=f(a)
     fb=f(b)
     pm=(fb*a-fa*b)/(fb-fa)
@@ -17,9 +17,3 @@ def secante(f, a, b, Nmax, tol=1.0e-6):
         e=abs(pm-p0)
         cont=cont+1
     return pm
-
-
-def f(x):
-    return x**5 - 3 * x**2 + 1.6
-
-print(secante(f, 1, 1.5, 1000))

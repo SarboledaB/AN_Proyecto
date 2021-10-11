@@ -14,9 +14,3 @@ def secante(f, x0, x1, Nmax, tol=1.0e-6):
         x1=xact
         f1=fact
     return x1
-
-
-def f(x):
-    return x**5 - 3 * x**2 + 1.6
-
-print(secante(f, 1, 1.5, 1000))

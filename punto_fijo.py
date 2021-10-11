@@ -15,7 +15,4 @@ def puntofijo(g, x0, Nmax, tol=1.0e-6):
         resp = np.nan
     return(resp)
 
-gx = lambda x: np.exp(-x)
-
-print(puntofijo( gx, 0.2, 1000, 0.001 ))
 

@@ -19,9 +19,3 @@ def biseccion(f, a, b, Nmax, tol=1.0e-6):
             b = x
         x = (a + b) / 2.0
         cont=cont+1;
-    print(x,cont,e)
-
-def f(x):
-    return x**5 - 3 * x**2 + 1.6
-
-print(biseccion(f, 1, 1.5, 1000))
