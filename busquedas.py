@@ -1,5 +1,5 @@
 def f(x):
-    return x**5 - 3 * x**2 + 1.6
+    return 1
 
 def busquedas(f, x0, h, Nmax):
     """Método de busquedas
@@ -31,7 +31,9 @@ def busquedas(f, x0, h, Nmax):
         xact=xant+h
         fact=f(xact)
         i += 1
+    if i == Nmax:
+        return ("No hubo convergencia después de {} iteraciones").format(i)
 
     return xant, xact, i
 
-print(busquedas(f, -1, 0.1, 1000))
+print(busquedas(f, -1.0, 0.1, 1000))
