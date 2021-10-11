@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 def f(x):
     return 1
+=======
+>>>>>>> f434de9153a71eac44402e15ecd5183295f88c9d
 
 def busquedas(f, x0, h, Nmax):
     """Método de busquedas
@@ -35,5 +38,3 @@ def busquedas(f, x0, h, Nmax):
         return ("No hubo convergencia después de {} iteraciones").format(i)
 
     return xant, xact, i
-
-print(busquedas(f, -1.0, 0.1, 1000))
