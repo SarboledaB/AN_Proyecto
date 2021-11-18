@@ -1,4 +1,3 @@
-
 def busquedas(f, x0, h, Nmax):
     """Método de busquedas
     Halla un intervalo donde f(x) tiene un cambio de signo usando el método
@@ -16,9 +15,9 @@ def busquedas(f, x0, h, Nmax):
     cont, Número de iteraciones
     """
     xant = float(x0)
-    fant = f(xant)
+    fant = f.evaluate({'x':xant})
     xact = xant + h
-    fact = f(xact)
+    fact = f.evaluate({'x':xact})
     cont = 0
 
     while cont<Nmax:
@@ -27,7 +26,7 @@ def busquedas(f, x0, h, Nmax):
         xant=xact
         fant=fact
         xact=xant+h
-        fact=f(xact)
+        fact=f.evaluate({'x':xact})
         cont += 1
     if cont == Nmax:
         return ("No se encontró el intervalo después de {} iteraciones").format(cont)

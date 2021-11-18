@@ -1,9 +1,9 @@
 
 def regla_falsa(f, a, b, Nmax, tol=1.0e-6):
-    fa=f(a)
-    fb=f(b)
+    fa=f.evaluate({'x': a})
+    fb=f.evaluate({'x': b})
     pm=(fb*a-fa*b)/(fb-fa)
-    fpm=f(pm)
+    fpm=f.evaluate({'x': pm})
     e = abs(b-a) 
     cont=1
     while e>tol and cont<Nmax:
@@ -12,8 +12,8 @@ def regla_falsa(f, a, b, Nmax, tol=1.0e-6):
         else:
             a=pm
         p0=pm
-        pm=(f(b)*a-f(a)*b)/(f(b)-f(a))
-        fpm=f(pm)
+        pm=(f.evaluate({'x': b})*a-f.evaluate({'x': a})*b)/(f.evaluate({'x': b})-f.evaluate({'x': a}))
+        fpm=f.evaluate({'x': pm})
         e=abs(pm-p0)
         cont=cont+1
     if cont == Nmax:

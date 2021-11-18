@@ -6,18 +6,22 @@ from busquedas import busquedas
 from raices_multiples import raicesmlt
 from newton import newton
 import numpy as np
+import sympy as sp 
 
-def f(x):
-    return x**5 - 3 * x**2 + 1.6
+from py_expression_eval import Parser
 
-def f2(x): return x ** 2 - 1
+parser = Parser()
+    
+def diff(f):
+    x = sp.Symbol('x')
+    df = str(sp.diff(str(f),x))
+    return parser.parse(df)
 
-def df(x): return 5 * x**4 - 6 * x
-
-def d2f(x): return 20 * x**3 - 6
-
-
-gx = lambda x: np.exp(-x)
+f = parser.parse('x**5 - 3 * x**2 + 1.6')
+f2 = parser.parse('x**2 - 1')
+df = diff(f)
+d2f = diff(df)
+gx = parser.parse('exp(-x)')
 
 while True:
     x = input("->")
