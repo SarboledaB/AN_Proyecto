@@ -11,8 +11,8 @@ def gausspl(A, b):
                 M[j,i:n+1]=M[j,i:n+1]-(M[j,i]/M[i,i])*M[i,i:n+1]
     return sustregr(M) 
     
-a = np.array([[3,2,1],
-              [5,3,4],
+a = np.array([[2,3,1],
+              [3,5,4],
               [1,1,-1]])
 b = np.array([1,2,1])
 
