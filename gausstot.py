@@ -20,7 +20,7 @@ def gausspar(A, b):
                 M[j,i:n+1]=M[j,i:n+1]-(M[j,i]/M[i,i])*M[i,i:n+1]
     x = sustregr(M) 
     for i in range(len(camb)-1,-1,-1):
-        x[[camb[i][0],camb[i][1]],:]=x[[camb[i][1],camb[i][0]],:]
+        x[[camb[i][0],camb[i][1]]]=x[[camb[i][1],camb[i][0]]]
         
     return x
     
