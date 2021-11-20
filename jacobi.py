@@ -1,5 +1,5 @@
 def entrada(mx,mr,n=100,c=0.0001):
-    Jacobi(mx,mr)
+    Jacobi(mx,mr,n,c)
 
 
 def Jacobi(mx,mr,n,c):
