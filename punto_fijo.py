@@ -1,4 +1,10 @@
-def puntofijo(g, x0, Nmax, tol=1.0e-6):
+from py_expression_eval import Parser
+
+def entrada(func, x0, Nmax=1000, tol=1.0e-6):
+    g = parser.parse(func)
+    puntofijo(g, x0, Nmax, tol)
+
+def puntofijo(g, x0, Nmax, tol):
     cont = 1
     x = g.evaluate({'x': x0})
     e = abs(x-x0)

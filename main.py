@@ -1,10 +1,10 @@
-from biseccion import biseccion
-from punto_fijo import puntofijo
-from regla_falsa import regla_falsa
-from secante import secante
-from busquedas import busquedas
-from raices_multiples import raicesmlt
-from newton import newton
+from biseccion import entrada as biseccion
+from punto_fijo import entrada as punto_fijo
+from regla_falsa import entrada as regla_falsa
+from secante import entrada as secante
+from busquedas import entrada as busquedas
+from raices_multiples import entrada as raices_multiples
+from newton import entrada as newton
 import numpy as np
 import sympy as sp 
 
@@ -26,18 +26,18 @@ gx = parser.parse('exp(-x)')
 while True:
     x = input("->")
     if x == '1':
-        print(busquedas(f, -1, 0.1, 1000))
+        print(busquedas(f, -1, 0.1))
     elif x == '2':
-        print(biseccion(f, -1, 1.5, 1000))
+        print(biseccion(f, -1, 1.5))
     elif x == '3':
-        print(raicesmlt(f, df, d2f, -1))
+        print(raices_multiples(f, -1))
     elif x == '4':
-        print(newton(f, df, -1))
+        print(newton(f, -1))
     elif x == '5':
-        print(regla_falsa(f, -1, 1.5, 1000))
+        print(regla_falsa(f, -1, 1.5))
     elif x == '6':
-        print(secante(f, -1, 0, 1000))
+        print(secante(f, -1, 0))
     elif x == '7':
-        print(puntofijo(gx, -1, 1000))
+        print(puntofijo(gx, -1))
     else:
         break

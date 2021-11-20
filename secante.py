@@ -1,3 +1,9 @@
+from py_expression_eval import Parser
+
+def entrada(func, x0, x1, Nmax=1000, tol=1.0e-6):
+    f = parser.parse(func)
+    secante(f, x0, x1, Nmax, tol)
+
 def secante(f, x0, x1, Nmax, tol=1.0e-6):
     f0=f.evaluate({'x': x0})
     f1=f.evaluate({'x': x1})

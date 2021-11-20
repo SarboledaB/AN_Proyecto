@@ -1,5 +1,11 @@
+from py_expression_eval import Parser
 
-def regla_falsa(f, a, b, Nmax, tol=1.0e-6):
+def entrada(func, a, b, Nmax=1000, tol=1.0e-6):
+    f = parser.parse(func)
+    regla_falsa(f, a, b, Nmax, tol)
+
+
+def regla_falsa(f, a, b, Nmax, tol):
     fa=f.evaluate({'x': a})
     fb=f.evaluate({'x': b})
     pm=(fb*a-fa*b)/(fb-fa)

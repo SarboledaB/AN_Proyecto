@@ -1,3 +1,9 @@
+from py_expression_eval import Parser
+
+def entrada(func, x0, h, Nmax=1000):
+    f = parser.parse(func)
+    busquedas(f, x0, h, Nmax)
+
 def busquedas(f, x0, h, Nmax):
     """Método de busquedas
     Halla un intervalo donde f(x) tiene un cambio de signo usando el método

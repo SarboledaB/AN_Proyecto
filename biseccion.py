@@ -1,6 +1,11 @@
 import numpy as np
+from py_expression_eval import Parser
 
-def biseccion(f, a, b, Nmax, tol=1.0e-6):
+def entrada(func, x0, h, Nmax=1000, tol=1.0e-6):
+    f = parser.parse(func)
+    busquedas(f, x0, h, Nmax, tol)
+
+def biseccion(f, a, b, Nmax, tol):
     e=1000
     cont = 1;
     if a > b:
