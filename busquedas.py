@@ -1,5 +1,7 @@
 from py_expression_eval import Parser
 
+parser = Parser()
+
 def entrada(func, x0, h, Nmax=1000):
     f = parser.parse(func)
     busquedas(f, x0, h, Nmax)

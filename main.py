@@ -5,6 +5,8 @@ from secante import entrada as secante
 from busquedas import entrada as busquedas
 from raices_multiples import entrada as raices_multiples
 from newton import entrada as newton
+from jacobi import entrada as jacobi
+
 import numpy as np
 import sympy as sp 
 
@@ -22,6 +24,10 @@ f2 = parser.parse('x**2 - 1')
 df = diff(f)
 d2f = diff(df)
 gx = parser.parse('exp(-x)')
+mx = [[8,-3,2],[4,11,-1],[6,3,12]]
+mr = [[20],[33],[36]]
+
+
 
 while True:
     x = input("->")
@@ -39,5 +45,7 @@ while True:
         print(secante(f, -1, 0))
     elif x == '7':
         print(puntofijo(gx, -1))
+    elif x == '8':
+        print(jacobi(mx,mr))
     else:
         break

@@ -1,5 +1,7 @@
 from py_expression_eval import Parser
 
+parser = Parser()
+
 def entrada(func, x0, x1, Nmax=1000, tol=1.0e-6):
     f = parser.parse(func)
     secante(f, x0, x1, Nmax, tol)

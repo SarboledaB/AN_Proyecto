@@ -1,5 +1,7 @@
 from py_expression_eval import Parser
 
+parser = Parser()
+
 def entrada(func, x_0, Nmax=50, xtol=1.0e-6, ftol=1.0e-6):
     f = parser.parse(func)
     df = diff(f)

@@ -1,5 +1,8 @@
+def entrada(mx,mr,n=100,c=0.0001):
+    Jacobi(mx,mr)
 
-def Jacobi(mx,mr,n=100,c=0.0001):
+
+def Jacobi(mx,mr,n,c):
     if len (mx) == len (mr): #Si mx y mr tienen la misma longitud, comience la iteración; de lo contrario, la ecuación no tiene solución
         x = [] # Valor inicial iterativo inicializado en una sola fila toda la matriz 0
         for i in range(len(mr)):
@@ -23,10 +26,3 @@ def Jacobi(mx,mr,n=100,c=0.0001):
             count = count + 1#Si el resultado de la iteración establecida aún no está satisfecho, la ecuación no tiene solución
     else:
         return False
- 
- #Ejemplo de #Call Jacobi (mx, mr, n = 100, c = 0.001)
-mx = [[8,-3,2],[4,11,-1],[6,3,12]]
- 
-mr = [[20],[33],[36]]
-
-print(Jacobi(mx,mr,100,0.00001))
