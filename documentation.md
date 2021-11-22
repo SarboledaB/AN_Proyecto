@@ -1,5 +1,7 @@
 # Documentation
 
+![Alt text](images\ANumerico.drawio.png?raw=true "Optional Title")
+
 
 ## Numerical solution of nonlinear equations.
 

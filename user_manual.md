@@ -35,3 +35,4 @@ We fill in the information of the matrix and the vector to obtain the result.
 in this view we find the interpolation methods.
 
 ![Alt text](images\interpolacion.PNG?raw=true "Optional Title")
+
