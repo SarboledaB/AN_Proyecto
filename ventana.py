@@ -19,6 +19,7 @@ from lupar import lupar
 from jacobi import entrada as jacobi
 from gseidel import gauss_seidel
 from lagrange import lagrange
+from vandermonde import vandermonde
 
 def inicio():
     #intrucciones
@@ -88,7 +89,7 @@ def createNewWindow3():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
-    boton18 = Button(newWindow,text="Vandermonde", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: vandermonde())
+    boton18 = Button(newWindow,text="Vandermonde", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: vandermonde_v())
     boton19 = Button(newWindow,text="Diferencias Divididas", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: diferenciasDiv())
     boton20 = Button(newWindow,text="Lagrange", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: lagrange_v())
 
@@ -692,10 +693,44 @@ def gausEidel():
     boton.grid(column=0, row=11, columnspan=10)
     Label(newWindow, text='').grid(column=0,row=12, columnspan=10)
     
-def vandermonde():
+def vandermonde_v():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=10, rowspan=11)
+    
+    Label(newWindow, text="Puntos").grid(column=0,row=1)
+    incognita = Entry(newWindow)
+    incognita.grid(column=1,row=1)
+    vectorx = []
+    vectory = []
+    def genMatriz (x):
+        for i in range(x):
+            Label(newWindow, text="X").grid(column=0,row=2, sticky="w")
+            Label(newWindow, text="Y").grid(column=1,row=2, sticky="w")
+            vectora = Entry(newWindow, width=7)
+            vectorb = Entry(newWindow, width=7)
+            vectorx.append(vectora)
+            vectory.append(vectorb)
+            vectora.grid(column=0, row=i+3, sticky="e")
+            vectorb.grid(column=1, row=i+3, sticky="e")
+        
+    generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
+    generar.grid(column=0, row=2, columnspan=10)
+    
+    def obValores (m):
+        x = np.zeros(m)
+        y = np.zeros(m)
+        for i in range(m):
+            x[i] = float(vectorx[i].get())
+            y[i] = float(vectory[i].get())
+        vandermonde(x,y)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
+    boton.grid(column=0, row=10, columnspan=10)
+    #gausspl(matriz.get(),float(vector.get()))
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
     
 def diferenciasDiv():
     newWindow = tk.Toplevel(ventana_principal)
@@ -738,7 +773,6 @@ def lagrange_v():
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
-    #gausspl(matriz.get(),float(vector.get()))
     Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
     
     
