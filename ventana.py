@@ -1,7 +1,7 @@
 import tkinter as tk
+import numpy as np
 from tkinter import *
 from tkinter import filedialog, messagebox, ttk
-from AN_Proyecto.raices_multiples import raicesmlt
 
 from numpy.lib import stride_tricks
 from biseccion import entrada as biseccion
@@ -295,42 +295,66 @@ def raicesMultiples():
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == raicesmlps(funcion.get(),float(puntoa.get()),int(maxIteracion.get()),tolerancia.get))
     boton.grid(column=0, row=6, columnspan=2)
     Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
-    
+       
 def gausSimple():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=10, rowspan=11)
     
-    Label(newWindow, text="Funcion").grid(column=0,row=1)
-    funcion =Entry(newWindow)
-    funcion.grid(column=1,row=1)
+    Label(newWindow, text="Incognitas").grid(column=0,row=1)
+    incognita = Entry(newWindow)
+    incognita.grid(column=1,row=1)
+    matriz = []
+    vector = []
+    def genMatriz (x):
+        for i in range(x):
+            vectorr = Entry(newWindow, width=7)
+            vectorr.grid(column=x+1, row=i+3, sticky="e")
+            Label(newWindow, text="=").grid(column=x,row=i+3, sticky="w")
+            a = [0]*x
+            for j in range(x):
+                casilla = Entry(newWindow, width=10)
+                casilla.grid(column=i, row=j+3)
+                a[j] = casilla
+            vector.append(vectorr)
+            matriz.append(a)
+        obValores(matriz)
+        
+    generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
+    generar.grid(column=0, row=2, columnspan=10)
     
-    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
-    puntoInicial = Entry(newWindow)
-    puntoInicial.grid(column=1,row=2)
+    def obValores (m):
+        for i in range(len(m[0])):
+            for j in range(len(m[0])):
+                print(matriz[i][j].get())
+                a = float(matriz[i][j].get())
+                matriz[i][j] = a
+            b = float(vector[i].get())
+            vector[i] = b
     
     resultado = ""
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gausspl(funcion.get(),float(puntoInicial.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: gausspl(np.array(matriz),np.array(vector)))
+    boton.grid(column=0, row=10, columnspan=10)
+    #gausspl(matriz,vector)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
     
 def gausPP():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
     
-    Label(newWindow, text="Funcion").grid(column=0,row=1)
-    funcion =Entry(newWindow)
-    funcion.grid(column=1,row=1)
+    Label(newWindow, text="Matriz").grid(column=0,row=1)
+    matriz =Entry(newWindow)
+    matriz.grid(column=1,row=1)
     
-    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
-    puntoInicial = Entry(newWindow)
-    puntoInicial.grid(column=1,row=2)
+    Label(newWindow, text="Vector").grid(column=0,row=2)
+    vector = Entry(newWindow)
+    vector.grid(column=1,row=2)
     
     resultado = ""
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gausspar(funcion.get(),float(puntoInicial.get())))
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gausspar(matriz.get(),float(vector.get())))
     boton.grid(column=0, row=6, columnspan=2)
     Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
@@ -339,17 +363,17 @@ def gausPT():
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
     
-    Label(newWindow, text="Funcion").grid(column=0,row=1)
-    funcion =Entry(newWindow)
-    funcion.grid(column=1,row=1)
+    Label(newWindow, text="matriz").grid(column=0,row=1)
+    matriz =Entry(newWindow)
+    matriz.grid(column=1,row=1)
     
-    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
-    puntoInicial = Entry(newWindow)
-    puntoInicial.grid(column=1,row=2)
+    Label(newWindow, text="Vector").grid(column=0,row=2)
+    vector = Entry(newWindow)
+    vector.grid(column=1,row=2)
     
     resultado = ""
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gausstot(funcion.get(),float(puntoInicial.get())))
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gausstot(matriz.get(),float(vector.get())))
     boton.grid(column=0, row=6, columnspan=2)
     Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
@@ -358,17 +382,17 @@ def factorizacionLuSimple():
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
     
-    Label(newWindow, text="Funcion").grid(column=0,row=1)
-    funcion =Entry(newWindow)
-    funcion.grid(column=1,row=1)
+    Label(newWindow, text="matriz").grid(column=0,row=1)
+    matriz =Entry(newWindow)
+    matriz.grid(column=1,row=1)
     
-    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
-    puntoInicial = Entry(newWindow)
-    puntoInicial.grid(column=1,row=2)
+    Label(newWindow, text="Vector").grid(column=0,row=2)
+    vector = Entry(newWindow)
+    vector.grid(column=1,row=2)
     
     resultado = ""
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == lusimpl(funcion.get(),float(puntoInicial.get())))
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == lusimpl(matriz.get(),float(vector.get())))
     boton.grid(column=0, row=6, columnspan=2)
     Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
@@ -377,17 +401,17 @@ def factorizacionLuParcial():
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
     
-    Label(newWindow, text="Funcion").grid(column=0,row=1)
-    funcion =Entry(newWindow)
-    funcion.grid(column=1,row=1)
+    Label(newWindow, text="matriz").grid(column=0,row=1)
+    matriz =Entry(newWindow)
+    matriz.grid(column=1,row=1)
     
-    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
-    puntoInicial = Entry(newWindow)
-    puntoInicial.grid(column=1,row=2)
+    Label(newWindow, text="Vector").grid(column=0,row=2)
+    vector = Entry(newWindow)
+    vector.grid(column=1,row=2)
     
     resultado = ""
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == lupar(funcion.get(),float(puntoInicial.get())))
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == lupar(matriz.get(),float(vector.get())))
     boton.grid(column=0, row=6, columnspan=2)
     Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
