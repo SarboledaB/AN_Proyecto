@@ -10,9 +10,7 @@ in this first window we will find the different categories of the methods:
 In this window we find the -----------------------------
 
 ### Incremental searches.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         In x0, x1, inc
         out table c
@@ -33,16 +31,12 @@ In this window we find the -----------------------------
                 print "Hay una raiz en c"
             end if
         end while
-
-        
     ``` 
         
 - **How use**
 
 ### Bisection.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         in Xi, Xs, tol, Iter
         Yi = f(Xi)
@@ -92,9 +86,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### False rule.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         in f(), p0, p1, tol, iter
         i = 1
@@ -119,9 +111,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### Fixed point.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
 
         in f(x) g(x) x0 e N
@@ -144,9 +134,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### Newton.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         in x0 f() fp() tol iter
         while i == iter
@@ -172,9 +160,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### Secante.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         in x1, x0, tol, Iter
         y0 = f(x0)
@@ -211,9 +197,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### Multiple roots.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         in x0, tol, Iter
         y0 = f(x0)
@@ -249,9 +233,7 @@ In this window we find the -----------------------------
 In this window we find the -----------------------------
 
 ### Gauss.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         int A, b
         (n,m)= length(A)
@@ -283,9 +265,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### Gauss.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         in A, b
         (n,m)= length(A)
@@ -335,9 +315,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### Gauss.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         in A, b
         (n,m)= length(A)
@@ -418,9 +396,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### Jacobi.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         in A, b, x, iter, tol
         cond = ||A|| * || A^-1 ||
@@ -455,9 +431,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### Gauss seidel.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         in A, b, x, iter, tol
         cond = ||A|| * || A^-1 ||
@@ -495,9 +469,7 @@ In this window we find the -----------------------------
 In this window we find the -----------------------------
 
 ### Vandarmonde.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         
     ``` 
@@ -505,9 +477,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### Divided differences.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         
     ``` 
@@ -515,9 +485,7 @@ In this window we find the -----------------------------
 - **How use**
 
 ### Lagrange.
-- **Explicacion**
 
-- **Algorimg**
     ```bash
         in xi, yj
         n= length(xi)
