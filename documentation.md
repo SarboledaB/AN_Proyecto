@@ -1,15 +1,22 @@
-# User Manual
+# Documentation
 
-## First view
-in this first window we will find the different categories of the methods:
-    - Numerical solution of nonlinear equations.
-    - Solution of systems of linear equations.
-    - interpolation.
 
 ## Numerical solution of nonlinear equations.
-In this window we find the -----------------------------
 
 ### Incremental searches.
+Given f (x) = 0, we apply the following steps:
+
+- The continuity of f must be guaranteed with arguments
+theoretical.
+- We choose a starting value x0 and a 4x that expresses the
+size of the interval that we want to find.
+- We generate a sequence x0, x1, ..., xn such that
+xn = xn − 1 + 4x.
+- Each time a value of xn is generated, we find the value of f (xn).
+- We observe the signs of f (xn) and f (xn − 1).
+- We suspend the process when there is a change of
+sign at f (xn) and f (xn − 1) or when we reach a limit of
+iterations without finding said change.
 
 ```bash
 In x0, x1, inc
@@ -33,9 +40,9 @@ while a<=b
 end while
 ``` 
         
-- **How use**
-
 ### Bisection.
+The method is quite simple, all it does is divide the
+interval in the middle and check which side the root was to get a new interval.
 
 ```bash
 in Xi, Xs, tol, Iter
@@ -83,9 +90,10 @@ else
 end if
 ``` 
         
-- **How use**
-
 ### False rule.
+It works the same as the bisection method, changing Only the method to select xm. In this case it is taken
+a straight line from f (a) to f (b) and is taken as xm the value
+where the x  intersects.
 
 ```bash
 in f(), p0, p1, tol, iter
@@ -108,9 +116,13 @@ if |f(p)| >= tol then
 end if
 ``` 
         
-- **How use**
-
 ### Fixed point.
+The method is based on the idea of ​​converting f (x) = 0, into x = g (x)
+somehow.
+
+The fundamental idea of ​​the method is to arrive at a point where
+satisfies the equality x = g (x) or we are close enough to
+do it
 
 ```bash
 in f(x) g(x) x0 e N
@@ -128,9 +140,11 @@ end While
 print x1
 ``` 
         
-- **How use**
-
 ### Newton.
+Let f ∈C 2 [a, b] and xv∈ [a, b] such that f (xv) = 0 and f ′ (xv) 6 = 0
+then there exists d> 0 such that Newton's method generates a
+sequence {xn} ∞n = 0 that converges to xv for any approximation
+initial x0 ∈ [xv − d, xv + d].
 
 ```bash
 in x0 f() fp() tol iter
@@ -154,9 +168,11 @@ end if
             
 ``` 
         
-- **How use**
-
 ### Secante.
+In the secant method we take two values ​​of the function for
+create the secant line to it and obtain a new value. The
+The logic behind this method is that it allows an approximation to the
+Newton's method without the need to perform the derivative.
 
 ```bash
 in x1, x0, tol, Iter
@@ -191,9 +207,12 @@ else
 end if 
 ``` 
         
-- **How use**
-
 ### Multiple roots.
+Let f ∈C m [a, b]. The function has a multiplicity root m in xv if and only if:
+
+0 = f (xv) = f ′ (xv) = f ′ ′ (xv) = ... = f (m − 1) (xv)
+
+But f (m) (xv) is different from zero.
 
 ```bash
 in x0, tol, Iter
@@ -224,12 +243,10 @@ else
 end if
 ``` 
         
-- **How use**
-
 ## Solution of systems of linear equations.
-In this window we find the -----------------------------
 
-### Gauss.
+### Gauss simple.
+the general idea of ​​the method is to start from Ax = b to arrive at Ux = B where U is an upper triangular matrix.
 
 ```bash
 int A, b
@@ -259,9 +276,9 @@ print a
 print x
 ``` 
         
-- **How use**
-
-### Gauss.
+### Gauss partial.
+In each stage k it is sought that akk (or the pivot) is of greater possible magnitude (absolute value) compared to others
+values ​​in column k that are below akk.
 
 ```bash
 in A, b
@@ -307,11 +324,11 @@ else
 end if
 print a
 print x
-``` 
-        
-- **How use**
+```   
 
-### Gauss.
+### Gauss total.
+In each stage k it is sought that akk (or the pivot) is of greater possible magnitude (absolute value) compared to others
+elements that are not part of the rows from F1 to Fk −1 or of the columns from C1 to Ck −1.
 
 ```bash
 in A, b
@@ -390,7 +407,6 @@ print a
 print x
 ``` 
         
-- **How use**
 
 ### Jacobi.
 
@@ -425,7 +441,6 @@ end while
 print table
 ``` 
         
-- **How use**
 
 ### Gauss seidel.
 
@@ -460,10 +475,8 @@ end while
 print table
 ``` 
         
-- **How use**
 
 ## Interpolation.
-In this window we find the -----------------------------
 
 ### Vandarmonde.
 
@@ -471,7 +484,6 @@ In this window we find the -----------------------------
         
     ``` 
         
-- **How use**
 
 ### Divided differences.
 
@@ -479,7 +491,6 @@ In this window we find the -----------------------------
         
     ``` 
         
-- **How use**
 
 ### Lagrange.
 
