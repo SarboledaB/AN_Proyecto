@@ -44,7 +44,7 @@ while True:
     elif x == '6':
         print(secante(f, -1, 0))
     elif x == '7':
-        print(puntofijo(gx, -1))
+        print(punto_fijo(gx, -1))
     elif x == '8':
         print(jacobi(mx,mr))
     else:

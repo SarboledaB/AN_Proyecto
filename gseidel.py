@@ -14,9 +14,9 @@ def gauss_seidel (A,b,kMax=50):
             print(x)
     return x.reshape(-1,1)
 
-n = 5
-b = np.random.rand(n)
-A = np.identity(n)+np.random.rand(n,n)
-x = gauss_seidel(A, b)
-print('Are the results accurate?', np.allclose(np.dot(A,x), b.reshape(-1,1)))
+# n = 5
+# b = np.random.rand(n)
+# A = np.identity(n)+np.random.rand(n,n)
+# x = gauss_seidel(A, b)
+# print('Are the results accurate?', np.allclose(np.dot(A,x), b.reshape(-1,1)))
                 
