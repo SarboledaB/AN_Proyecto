@@ -34,12 +34,12 @@ def vandermonde (x,y, num_puntos=100):
         f += '+'+str(Coef[i])+'*x**'+str(len(Coef)-i-1)
     f = parser.parse(f)
 
-    xr = np.linspace(-np.pi, np.pi, num_puntos)
+    xr = np.linspace(min(x), max(x), num_puntos)
     yr = np.array([f.evaluate({'x': i}) for i in xr])
     # Gráfica
     plt.style.use('ggplot')
     plt.plot(xr, yr)
     plt.scatter(x, y)
-    plt.legend(['Lagrange', 'Datos'], loc='best')
-    return Coef
+    plt.legend(['Vandermonde', 'Datos'], loc='best')
     plt.show()
+    return Coef
