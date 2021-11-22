@@ -13,15 +13,18 @@ by:
 
 ### Windows:
  ```bash
-    $
+    $ pip intall -r ./requirements.txt
+    $ python ./ventana.py
  ``` 
 ### Mac OS:
  ```bash
-    $
+    $ pip intall -r ./requirements.txt
+    $ python ./ventana.py
  ``` 
 ### Linux:
  ```bash
-    $
+    $ pip intall -r ./requirements.txt
+    $ python ./ventana.py
  ```                                                            
 
 
