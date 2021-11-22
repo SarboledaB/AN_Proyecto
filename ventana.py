@@ -420,8 +420,7 @@ def gausPP():
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
-    #gausspl(matriz.get(),float(vector.get()))
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
+    Label(newWindow, text='').grid(column=0,row=11, columnspan=2)
     
 def gausPT():
     newWindow = tk.Toplevel(ventana_principal)
@@ -476,7 +475,7 @@ def gausPT():
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
+    Label(newWindow, text='').grid(column=0,row=11, columnspan=2)
     
 def factorizacionLuSimple():
     newWindow = tk.Toplevel(ventana_principal)
@@ -531,8 +530,7 @@ def factorizacionLuSimple():
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
-    #gausspl(matriz.get(),float(vector.get()))
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
+    Label(newWindow, text='').grid(column=0,row=11, columnspan=2)
     
 def factorizacionLuParcial():
     newWindow = tk.Toplevel(ventana_principal)
@@ -587,8 +585,7 @@ def factorizacionLuParcial():
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
-    #gausspl(matriz.get(),float(vector.get()))
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
+    Label(newWindow, text='').grid(column=0,row=11, columnspan=2)
     
 def jacobi():
     newWindow = tk.Toplevel(ventana_principal)
@@ -732,14 +729,12 @@ def lagrange_v():
         for i in range(m):
             x[i] = float(vectorx[i].get())
             y[i] = float(vectory[i].get())
-        lagrange(x,y)
-    
-    resultado = ""
+        i = lagrange(x,y)
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=10, columnspan=10)
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
-    #gausspl(matriz.get(),float(vector.get()))
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
+    Label(newWindow, text='').grid(column=0,row=11, columnspan=2)
     
     
 str = ''
