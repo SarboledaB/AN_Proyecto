@@ -485,14 +485,7 @@ print table
     ```bash
         
     ``` 
-        
-
-### Divided differences.
-
-    ```bash
-        
-    ``` 
-        
+          
 
 ### Lagrange.
 
