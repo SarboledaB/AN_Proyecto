@@ -59,7 +59,7 @@ In this window we find the -----------------------------
         
 - **How use**
 
-### Drying.
+### Secante.
 - **Explicacion**
 
 - **Algorimg**
