@@ -4,7 +4,7 @@ parser = Parser()
 
 def entrada(func, a, b, Nmax=1000, tol=1.0e-6):
     f = parser.parse(func)
-    regla_falsa(f, a, b, Nmax, tol)
+    return regla_falsa(f, a, b, Nmax, tol)
 
 
 def regla_falsa(f, a, b, Nmax, tol):

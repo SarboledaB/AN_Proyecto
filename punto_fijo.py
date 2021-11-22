@@ -4,7 +4,7 @@ parser = Parser()
 
 def entrada(func, x0, Nmax=1000, tol=1.0e-6):
     g = parser.parse(func)
-    puntofijo(g, x0, Nmax, tol)
+    return puntofijo(g, x0, Nmax, tol)
     print(func, x0, Nmax, tol)
 
 def puntofijo(g, x0, Nmax, tol):

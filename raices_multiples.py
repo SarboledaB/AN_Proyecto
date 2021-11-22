@@ -7,7 +7,7 @@ def entrada(func, x_0, Nmax=50, xtol=1.0e-6):
     f = parser.parse(func)
     df = diff(f)
     d2f = diff(df)
-    raicesmlt(f, df, d2f, x_0, Nmax, xtol)
+    return raicesmlt(f, df, d2f, x_0, Nmax, xtol)
     
 def diff(f):
     x = sp.Symbol('x')

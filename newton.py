@@ -6,7 +6,7 @@ parser = Parser()
 def entrada(func, x_0, Nmax=50, xtol=1.0e-6):
     f = parser.parse(func)
     df = diff(f)
-    newton(f, df, x_0, Nmax, xtol)
+    return newton(f, df, x_0, Nmax, xtol)
     
 def diff(f):
     x = sp.Symbol('x')

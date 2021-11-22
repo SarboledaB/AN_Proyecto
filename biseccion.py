@@ -5,7 +5,7 @@ parser = Parser()
 
 def entrada(func, a, b, Nmax=1000, tol=1.0e-6):
     f = parser.parse(func)
-    biseccion(f, a, b, Nmax, tol)
+    return biseccion(f, a, b, Nmax, tol)
 
 def biseccion(f, a, b, Nmax, tol):
     e=1000
