@@ -117,16 +117,18 @@ def busquedass():
     paso = Entry(newWindow)
     paso.grid(column=1,row=4)
     
-    resultado = ""
+    def obValores ():
+        
+        i = busquedas(funcion.get(),float(puntoInicial.get()),float(paso.get()),int(maxIteracion.get()))
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=7, columnspan=2)
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == busquedas(funcion.get(),float(puntoInicial.get()),float(paso.get()),int(maxIteracion.get())))
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores())
     boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def biseccionn():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=7)
+    canvas.grid(columnspan=2, rowspan=8)
     
     Label(newWindow, text="Funcion").grid(column=0,row=1)
     funcion =Entry(newWindow)
@@ -148,16 +150,20 @@ def biseccionn():
     tolerancia = Entry(newWindow)
     tolerancia.grid(column=1,row=5)
     
-    resultado = ""
+    def obValores ():
+        
+        i = biseccion(funcion.get(),float(puntoInicial.get()),float(puntoFinal.get()),int(maxIteracion.get()),float(tolerancia.get()))
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=6, columnspan=2)
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == biseccion(funcion.get(),float(puntoInicial.get()),float(puntoFinal.get()),int(maxIteracion.get()),float(tolerancia.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores())
+    boton.grid(column=0, row=7, columnspan=2)
+    
+    Label(newWindow, text='{}').grid(column=0,row=8, columnspan=2)
     
 def reglaFalsa():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=7)
+    canvas.grid(columnspan=2, rowspan=8)
     
     Label(newWindow, text="Funcion").grid(column=0,row=1)
     funcion =Entry(newWindow)
@@ -179,16 +185,20 @@ def reglaFalsa():
     tolerancia = Entry(newWindow)
     tolerancia.grid(column=1,row=5)
     
-    resultado = ""
+    def obValores ():
+        
+        i = regla_falsa(funcion.get(),float(puntoInicial.get()),float(puntoFinal.get()),int(maxIteracion.get()),float(tolerancia.get()))
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=6, columnspan=2)
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == regla_falsa(funcion.get(),float(puntoInicial.get()),float(puntoFinal.get()),int(maxIteracion.get()),float(tolerancia.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores())
+    boton.grid(column=0, row=7, columnspan=2)
+    
+    Label(newWindow, text='{}').grid(column=0,row=8, columnspan=2)
     
 def puntoFijo():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=7)
+    canvas.grid(columnspan=2, rowspan=8)
     
     Label(newWindow, text="Funcion").grid(column=0,row=1)
     funcion =Entry(newWindow)
@@ -206,16 +216,20 @@ def puntoFijo():
     tolerancia = Entry(newWindow)
     tolerancia.grid(column=1,row=4)
     
-    resultado = ""
+    def obValores ():
+        
+        i = puntofijo(funcion.get(),float(puntoInicial.get()),int(maxIteracion.get()),float(tolerancia.get()))
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=6, columnspan=2)
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == puntofijo(funcion.get(),float(puntoInicial.get()),int(maxIteracion.get()),float(tolerancia.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores())
+    boton.grid(column=0, row=7, columnspan=2)
+    
+    Label(newWindow, text='{}').grid(column=0,row=8, columnspan=2)
     
 def newwton():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=7)
+    canvas.grid(columnspan=2, rowspan=8)
     
     Label(newWindow, text="Funcion").grid(column=0,row=1)
     funcion =Entry(newWindow)
@@ -233,11 +247,15 @@ def newwton():
     tolerancia = Entry(newWindow)
     tolerancia.grid(column=1,row=4)
     
-    resultado = ""
+    def obValores ():
+        
+        i = newton(funcion.get(),float(puntoInicial.get()),int(maxIteracion.get()),float(tolerancia.get()))
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=6, columnspan=2)
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == newton(funcion.get(),float(puntoInicial.get()),int(maxIteracion.get()),float(tolerancia.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores())
+    boton.grid(column=0, row=7, columnspan=2)
+    
+    Label(newWindow, text='{}').grid(column=0,row=8, columnspan=2)
     
 def secantee():
     newWindow = tk.Toplevel(ventana_principal)
@@ -264,11 +282,15 @@ def secantee():
     tolerancia = Entry(newWindow)
     tolerancia.grid(column=1,row=5)
     
-    resultado = ""
+    def obValores ():
+        
+        i = secante(funcion.get(),float(puntoa.get()),float(puntob.get()),int(maxIteracion.get()),float(tolerancia.get))
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=6, columnspan=2)
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == secante(funcion.get(),float(puntoa.get()),float(puntob.get()),int(maxIteracion.get()),tolerancia.get))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores())
+    boton.grid(column=0, row=7, columnspan=2)
+    
+    Label(newWindow, text='{}').grid(column=0,row=8, columnspan=2)
     
 def raicesMultiples():
     newWindow = tk.Toplevel(ventana_principal)
@@ -291,11 +313,15 @@ def raicesMultiples():
     tolerancia = Entry(newWindow)
     tolerancia.grid(column=1,row=4)
     
-    resultado = ""
+    def obValores ():
+        
+        i = raicesmlps(funcion.get(),float(puntoa.get()),int(maxIteracion.get()),float(tolerancia.get))
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=6, columnspan=2)
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == raicesmlps(funcion.get(),float(puntoa.get()),int(maxIteracion.get()),tolerancia.get))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores())
+    boton.grid(column=0, row=7, columnspan=2)
+    
+    Label(newWindow, text='{}').grid(column=0,row=8, columnspan=2)
        
 def gausSimple():
     newWindow = tk.Toplevel(ventana_principal)
@@ -334,14 +360,12 @@ def gausSimple():
                 c[i,j] = a
             b = float(vector[i].get())
             d[i] = b
-        gausspl(c,d)
-    
-    resultado = ""
+        i = gausspl(c,d)
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=10, columnspan=10)
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
-    boton.grid(column=0, row=10, columnspan=10)
-    #gausspl(matriz.get(),float(vector.get()))
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
+    boton.grid(column=0, row=11, columnspan=10)
+    Label(newWindow, text='').grid(column=0,row=12, columnspan=10)
     
 def gausPP():
     newWindow = tk.Toplevel(ventana_principal)
@@ -382,7 +406,17 @@ def gausPP():
             d[i] = b
         gausspar(c,d)
     
-    resultado = ""
+    def obValores (m):
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[i][j].get())
+                c[i,j] = a
+            b = float(vector[i].get())
+            d[i] = b
+        i = gausspar(c,d)
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=10, columnspan=10)
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
@@ -428,7 +462,17 @@ def gausPT():
             d[i] = b
         gausstot(c,d)
     
-    resultado = ""
+    def obValores (m):
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[i][j].get())
+                c[i,j] = a
+            b = float(vector[i].get())
+            d[i] = b
+        i = gausstot(c,d)
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=10, columnspan=10)
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
@@ -473,7 +517,17 @@ def factorizacionLuSimple():
             d[i] = b
         lusimpl(c,d)
     
-    resultado = ""
+    def obValores (m):
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[i][j].get())
+                c[i,j] = a
+            b = float(vector[i].get())
+            d[i] = b
+        i = lusimpl(c,d)
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=10, columnspan=10)
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
@@ -519,7 +573,17 @@ def factorizacionLuParcial():
             d[i] = b
         lupar(c,d)
     
-    resultado = ""
+    def obValores (m):
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[i][j].get())
+                c[i,j] = a
+            b = float(vector[i].get())
+            d[i] = b
+        i = lupar(c,d)
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=10, columnspan=10)
     
     boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
@@ -529,52 +593,104 @@ def factorizacionLuParcial():
 def jacobi():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=7)
+    canvas.grid(columnspan=10, rowspan=11)
     
-    Label(newWindow, text="Funcion").grid(column=0,row=1)
-    funcion =Entry(newWindow)
-    funcion.grid(column=1,row=1)
+    Label(newWindow, text="Incognitas").grid(column=0,row=1)
+    incognita = Entry(newWindow)
+    incognita.grid(column=1,row=1)
     
-    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
-    puntoInicial = Entry(newWindow)
-    puntoInicial.grid(column=1,row=2)
+    Label(newWindow, text="tolerancia").grid(column=0,row=2)
+    tolerancia = Entry(newWindow)
+    tolerancia.grid(column=1,row=2)
     
     Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=3)
     maxIteracion = Entry(newWindow)
     maxIteracion.grid(column=1,row=3)
     
-    Label(newWindow, text="paso").grid(column=0,row=4)
-    paso = Entry(newWindow)
-    paso.grid(column=1,row=4)
+    matriz = []
+    vector = []
+    def genMatriz (x):
+        for i in range(x):
+            Label(newWindow, text="=").grid(column=x,row=i+4, sticky="w")
+            a = [0]*x
+            for j in range(x):
+                casilla = Entry(newWindow, width=10)
+                casilla.grid(column=j, row=i+4)
+                a[j] = casilla
+            matriz.append(a)
+            vectorr = Entry(newWindow, width=7)
+            vector.append(vectorr)
+            vectorr.grid(column=x+1, row=i+4, sticky="e")
+            
+        array = np.array(matriz)
+        
+    generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
+    generar.grid(column=0, row=2, columnspan=10)
     
-    resultado = ""
+    def obValores (m):
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[i][j].get())
+                c[i,j] = a
+            b = float(vector[i].get())
+            d[i] = b
+        i = jacobi(c,d,int(maxIteracion.get()),float(tolerancia.get))
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=10, columnspan=10)
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == jacobi(funcion.get(),float(puntoInicial.get()),float(paso.get()),int(maxIteracion.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
+    boton.grid(column=0, row=11, columnspan=10)
+    Label(newWindow, text='').grid(column=0,row=12, columnspan=10)
     
 def gausEidel():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=7)
+    canvas.grid(columnspan=10, rowspan=11)
     
-    Label(newWindow, text="Funcion").grid(column=0,row=1)
-    funcion =Entry(newWindow)
-    funcion.grid(column=1,row=1)
-    
-    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
-    puntoInicial = Entry(newWindow)
-    puntoInicial.grid(column=1,row=2)
+    Label(newWindow, text="Incognitas").grid(column=0,row=1)
+    incognita = Entry(newWindow)
+    incognita.grid(column=1,row=1)
     
     Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=3)
     maxIteracion = Entry(newWindow)
-    maxIteracion.grid(column=1,row=3)
+    maxIteracion.grid(column=1,row=2)
     
-    resultado = ""
+    matriz = []
+    vector = []
+    def genMatriz (x):
+        for i in range(x):
+            Label(newWindow, text="=").grid(column=x,row=i+3, sticky="w")
+            a = [0]*x
+            for j in range(x):
+                casilla = Entry(newWindow, width=10)
+                casilla.grid(column=j, row=i+3)
+                a[j] = casilla
+            matriz.append(a)
+            vectorr = Entry(newWindow, width=7)
+            vector.append(vectorr)
+            vectorr.grid(column=x+1, row=i+3, sticky="e")
+            
+        array = np.array(matriz)
+        
+    generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
+    generar.grid(column=0, row=2, columnspan=10)
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gauss_seidel(funcion.get(),float(puntoInicial.get()),int(maxIteracion.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    def obValores (m):
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[i][j].get())
+                c[i,j] = a
+            b = float(vector[i].get())
+            d[i] = b
+        i = gauss_seidel(c,d,int(maxIteracion.get))
+        Label(newWindow, text='Resultado = {}'.format(i)).grid(column=0,row=10, columnspan=10)
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
+    boton.grid(column=0, row=11, columnspan=10)
+    Label(newWindow, text='').grid(column=0,row=12, columnspan=10)
     
 def vandermonde():
     newWindow = tk.Toplevel(ventana_principal)

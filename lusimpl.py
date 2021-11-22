@@ -18,8 +18,6 @@ def lusimpl(A, b):
 
     U[n-1,n-1]=M[n-1,n-1]
     
-    print(L)
-    print(U)
     L = np.insert(L, L.shape[0],b,axis=1).astype(float)
     z = sustprgr(L)
     U = np.insert(U, U.shape[0],z,axis=1).astype(float)

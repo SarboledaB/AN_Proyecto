@@ -48,8 +48,3 @@ def lagrange(x,y,num_puntos=100):
     plt.show()
     
     return pol
-    
-
-x = np.linspace(-np.pi, np.pi, 4)
-y = np.array([np.sin(i) for i in x])
-pol = lagrange(x, y)
