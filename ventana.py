@@ -308,19 +308,18 @@ def gausSimple():
     vector = []
     def genMatriz (x):
         for i in range(x):
-            vectorr = Entry(newWindow, width=7)
-            vectorr.grid(column=x+1, row=i+3, sticky="e")
             Label(newWindow, text="=").grid(column=x,row=i+3, sticky="w")
             a = [0]*x
             for j in range(x):
                 casilla = Entry(newWindow, width=10)
-                casilla.grid(column=i, row=j+3)
+                casilla.grid(column=j, row=i+3)
                 a[j] = casilla
-            vector.append(vectorr)
             matriz.append(a)
+            vectorr = Entry(newWindow, width=7)
+            vector.append(vectorr)
+            vectorr.grid(column=x+1, row=i+3, sticky="e")
+            
         array = np.array(matriz)
-        print(array)
-        print(vector)
         
     generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
     generar.grid(column=0, row=2, columnspan=10)
@@ -330,12 +329,10 @@ def gausSimple():
         d = np.zeros(m)
         for i in range(m):
             for j in range(m):
-                a = float(matriz[j][i].get())
+                a = float(matriz[i][j].get())
                 c[i,j] = a
             b = float(vector[i].get())
-            d[i] = b     
-        print(c)
-        print(d)
+            d[i] = b
         gausspl(c,d)
     
     resultado = ""
