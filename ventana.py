@@ -318,25 +318,31 @@ def gausSimple():
                 a[j] = casilla
             vector.append(vectorr)
             matriz.append(a)
-        obValores(matriz)
+        array = np.array(matriz)
+        print(array)
+        print(vector)
         
     generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
     generar.grid(column=0, row=2, columnspan=10)
     
     def obValores (m):
-        for i in range(len(m[0])):
-            for j in range(len(m[0])):
-                print(matriz[i][j].get())
-                a = float(matriz[i][j].get())
-                matriz[i][j] = a
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[j][i].get())
+                c[i,j] = a
             b = float(vector[i].get())
-            vector[i] = b
+            d[i] = b     
+        print(c)
+        print(d)
+        gausspl(c,d)
     
     resultado = ""
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: gausspl(np.array(matriz),np.array(vector)))
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
     boton.grid(column=0, row=10, columnspan=10)
-    #gausspl(matriz,vector)
+    #gausspl(matriz.get(),float(vector.get()))
     Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
     
 def gausPP():

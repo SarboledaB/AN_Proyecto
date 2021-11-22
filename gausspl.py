@@ -9,6 +9,7 @@ def gausspl(A, b):
         for j in range(i+1,n):
             if M[j,i] != 0:
                 M[j,i:n+1]=M[j,i:n+1]-(M[j,i]/M[i,i])*M[i,i:n+1]
+    print (sustregr(M))
     return sustregr(M) 
     
 # a = np.array([[2,3,1],
