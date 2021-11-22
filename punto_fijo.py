@@ -5,6 +5,7 @@ parser = Parser()
 def entrada(func, x0, Nmax=1000, tol=1.0e-6):
     g = parser.parse(func)
     puntofijo(g, x0, Nmax, tol)
+    print(func, x0, Nmax, tol)
 
 def puntofijo(g, x0, Nmax, tol):
     cont = 1
@@ -18,5 +19,7 @@ def puntofijo(g, x0, Nmax, tol):
     resp = x
     
     if (cont>=Nmax ):
+        print( ("No hubo convergencia después de {} iteraciones").format(cont))
         return ("No hubo convergencia después de {} iteraciones").format(cont)
+    print(resp)
     return(resp)

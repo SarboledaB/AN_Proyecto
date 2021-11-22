@@ -1,15 +1,23 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog, messagebox, ttk
+from AN_Proyecto.raices_multiples import raicesmlt
 
 from numpy.lib import stride_tricks
-from biseccion import biseccion
-from punto_fijo import puntofijo
-from regla_falsa import regla_falsa
-from secante import secante
+from biseccion import entrada as biseccion
+from punto_fijo import entrada as puntofijo
+from regla_falsa import entrada as regla_falsa
+from secante import entrada as secante
 from busquedas import entrada as busquedas
-from raices_multiples import raicesmlt
-from newton import newton
+from raices_multiples import entrada as raicesmlps
+from newton import entrada as newton
+from gausspl import gausspl
+from gausspar import gausspar
+from gausstot import gausspar as gausstot
+from lusimpl import lusimpl
+from lupar import lupar
+from jacobi import entrada as jacobi
+from gseidel import gauss_seidel
 
 def inicio():
     #intrucciones
@@ -52,13 +60,13 @@ def createNewWindow2():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=14)
-    boton11 = Button(newWindow, text="Gaus Simple", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: gausSimple())
-    boton12 = Button(newWindow, text="Gaus Pivote Parcial", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: gausPP())
-    boton13 = Button(newWindow, text="Gaus Pivote Total", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: gausPT())
+    boton11 = Button(newWindow, text="Gauss Simple", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: gausSimple())
+    boton12 = Button(newWindow, text="Gauss Pivote Parcial", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: gausPP())
+    boton13 = Button(newWindow, text="Gauss Pivote Total", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: gausPT())
     boton14 = Button(newWindow, text="Factorizacion Lu Simple", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: factorizacionLuSimple())
     boton15 = Button(newWindow, text="Factorizacion Lu Parcial", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: factorizacionLuParcial())
     boton16 = Button(newWindow, text="Jacobi", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: jacobi())
-    boton17 = Button(newWindow, text="Gaus Eidel", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: gausEidel())
+    boton17 = Button(newWindow, text="Gauss-Seidel", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: gausEidel())
 
     boton11.grid(column=0, row=1, columnspan=2)
     label5.grid(column=0,row=2, columnspan=2)
@@ -91,6 +99,7 @@ def busquedass():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=350)
     canvas.grid(columnspan=2, rowspan=7)
+    
     Label(newWindow, text="Funcion").grid(column=0,row=1)
     funcion =Entry(newWindow)
     funcion.grid(column=1,row=1)
@@ -99,83 +108,338 @@ def busquedass():
     puntoInicial = Entry(newWindow)
     puntoInicial.grid(column=1,row=2)
     
-    Label(newWindow, text="Maximo de Interaccioneses").grid(column=0,row=3)
-    maxInteraccion = Entry(newWindow)
-    maxInteraccion.grid(column=1,row=3)
+    Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=3)
+    maxIteracion = Entry(newWindow)
+    maxIteracion.grid(column=1,row=3)
     
     Label(newWindow, text="paso").grid(column=0,row=4)
     paso = Entry(newWindow)
     paso.grid(column=1,row=4)
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: busquedas(funcion.get(),float(puntoInicial.get()),float(paso.get()),int(maxInteraccion.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    #Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    resultado = ""
     
-
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == busquedas(funcion.get(),float(puntoInicial.get()),float(paso.get()),int(maxIteracion.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    
 def biseccionn():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=2, rowspan=7)
+    
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto a").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    Label(newWindow, text="Punto b").grid(column=0,row=3)
+    puntoFinal = Entry(newWindow)
+    puntoFinal.grid(column=1,row=3)
+    
+    Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=4)
+    maxIteracion = Entry(newWindow)
+    maxIteracion.grid(column=1,row=4)
+    
+    Label(newWindow, text="Tolerancia").grid(column=0,row=5)
+    tolerancia = Entry(newWindow)
+    tolerancia.grid(column=1,row=5)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == biseccion(funcion.get(),float(puntoInicial.get()),float(puntoFinal.get()),int(maxIteracion.get()),float(tolerancia.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def reglaFalsa():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=2, rowspan=7)
+    
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto a").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    Label(newWindow, text="Punto b").grid(column=0,row=3)
+    puntoFinal = Entry(newWindow)
+    puntoFinal.grid(column=1,row=3)
+    
+    Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=4)
+    maxIteracion = Entry(newWindow)
+    maxIteracion.grid(column=1,row=4)
+    
+    Label(newWindow, text="Tolerancia").grid(column=0,row=5)
+    tolerancia = Entry(newWindow)
+    tolerancia.grid(column=1,row=5)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == regla_falsa(funcion.get(),float(puntoInicial.get()),float(puntoFinal.get()),int(maxIteracion.get()),float(tolerancia.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def puntoFijo():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=2, rowspan=7)
+    
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=3)
+    maxIteracion = Entry(newWindow)
+    maxIteracion.grid(column=1,row=3)
+    
+    Label(newWindow, text="Tolerancia").grid(column=0,row=4)
+    tolerancia = Entry(newWindow)
+    tolerancia.grid(column=1,row=4)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == puntofijo(funcion.get(),float(puntoInicial.get()),int(maxIteracion.get()),float(tolerancia.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def newwton():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=2, rowspan=7)
+    
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=3)
+    maxIteracion = Entry(newWindow)
+    maxIteracion.grid(column=1,row=3)
+    
+    Label(newWindow, text="tolerancia").grid(column=0,row=4)
+    tolerancia = Entry(newWindow)
+    tolerancia.grid(column=1,row=4)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == newton(funcion.get(),float(puntoInicial.get()),int(maxIteracion.get()),float(tolerancia.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def secantee():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=2, rowspan=7)
+    
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto a").grid(column=0,row=2)
+    puntoa = Entry(newWindow)
+    puntoa.grid(column=1,row=2)
+    
+    Label(newWindow, text="Punto b").grid(column=0,row=3)
+    puntob = Entry(newWindow)
+    puntob.grid(column=1,row=3)
+    
+    Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=4)
+    maxIteracion = Entry(newWindow)
+    maxIteracion.grid(column=1,row=4)
+    
+    Label(newWindow, text="tolerancia").grid(column=0,row=5)
+    tolerancia = Entry(newWindow)
+    tolerancia.grid(column=1,row=5)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == secante(funcion.get(),float(puntoa.get()),float(puntob.get()),int(maxIteracion.get()),tolerancia.get))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def raicesMultiples():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=2, rowspan=7)
+    
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto a").grid(column=0,row=2)
+    puntoa = Entry(newWindow)
+    puntoa.grid(column=1,row=2)
+    
+    Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=3)
+    maxIteracion = Entry(newWindow)
+    maxIteracion.grid(column=1,row=3)
+    
+    Label(newWindow, text="tolerancia").grid(column=0,row=4)
+    tolerancia = Entry(newWindow)
+    tolerancia.grid(column=1,row=4)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == raicesmlps(funcion.get(),float(puntoa.get()),int(maxIteracion.get()),tolerancia.get))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def gausSimple():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
     
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gausspl(funcion.get(),float(puntoInicial.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    
 def gausPP():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
+    
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gausspar(funcion.get(),float(puntoInicial.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def gausPT():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
     
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gausstot(funcion.get(),float(puntoInicial.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    
 def factorizacionLuSimple():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
+    
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == lusimpl(funcion.get(),float(puntoInicial.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def factorizacionLuParcial():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
     
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == lupar(funcion.get(),float(puntoInicial.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    
 def jacobi():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=2, rowspan=7)
+    
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=3)
+    maxIteracion = Entry(newWindow)
+    maxIteracion.grid(column=1,row=3)
+    
+    Label(newWindow, text="paso").grid(column=0,row=4)
+    paso = Entry(newWindow)
+    paso.grid(column=1,row=4)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == jacobi(funcion.get(),float(puntoInicial.get()),float(paso.get()),int(maxIteracion.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def gausEidel():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=2, rowspan=7)
+    
+    Label(newWindow, text="Funcion").grid(column=0,row=1)
+    funcion =Entry(newWindow)
+    funcion.grid(column=1,row=1)
+    
+    Label(newWindow, text="Punto Inicial").grid(column=0,row=2)
+    puntoInicial = Entry(newWindow)
+    puntoInicial.grid(column=1,row=2)
+    
+    Label(newWindow, text="Maximo de Iteraciones").grid(column=0,row=3)
+    maxIteracion = Entry(newWindow)
+    maxIteracion.grid(column=1,row=3)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gauss_seidel(funcion.get(),float(puntoInicial.get()),int(maxIteracion.get())))
+    boton.grid(column=0, row=6, columnspan=2)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
     
 def vandermonde():
     newWindow = tk.Toplevel(ventana_principal)

@@ -27,9 +27,9 @@ def lusimpl(A, b):
     
     return x
     
-a = np.array([[3,5,4],
-              [1,1,-1],
-              [2,3,1]])
-b = np.array([2,1,1])
+# a = np.array([[3,5,4],
+#               [1,1,-1],
+#               [2,3,1]])
+# b = np.array([2,1,1])
 
-print(lusimpl(a,b))
+# print(lusimpl(a,b))

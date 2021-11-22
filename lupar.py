@@ -32,9 +32,9 @@ def lupar(A, vb):
     
     return x
     
-a = np.array([[3,5,4],
-              [1,1,-1],
-              [2,3,1]])
-b = np.array([2,1,1])
+# a = np.array([[3,5,4],
+#               [1,1,-1],
+#               [2,3,1]])
+# b = np.array([2,1,1])
 
-print(lupar(a,b))
+# print(lupar(a,b))

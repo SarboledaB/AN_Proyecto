@@ -19,11 +19,11 @@ def diff(f):
     df = str(sp.diff(str(f),x))
     return parser.parse(df)
 
-f = parser.parse('x**5 - 3 * x**2 + 1.6')
-f2 = parser.parse('x**2 - 1')
+f = 'x**5 - 3 * x**2 + 1.6'
+f2 = 'x**2 - 1'
 df = diff(f)
 d2f = diff(df)
-gx = parser.parse('exp(-x)')
+gx = 'exp(-x)'
 mx = [[8,-3,2],[4,11,-1],[6,3,12]]
 mr = [[20],[33],[36]]
 
@@ -44,7 +44,7 @@ while True:
     elif x == '6':
         print(secante(f, -1, 0))
     elif x == '7':
-        print(puntofijo(gx, -1))
+        print(punto_fijo(gx, -1))
     elif x == '8':
         print(jacobi(mx,mr))
     else:
