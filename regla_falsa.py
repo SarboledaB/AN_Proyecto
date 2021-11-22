@@ -25,7 +25,5 @@ def regla_falsa(f, a, b, Nmax, tol):
         e=abs(pm-p0)
         cont=cont+1
     if cont == Nmax:
-        print ("No se encontró el intervalo después de {} iteraciones").format(cont)
         return ("No se encontró el intervalo después de {} iteraciones").format(cont)
-    print(pm)
     return pm

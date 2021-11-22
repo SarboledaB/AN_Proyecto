@@ -19,7 +19,5 @@ def puntofijo(g, x0, Nmax, tol):
     resp = x
     
     if (cont>=Nmax ):
-        print( ("No hubo convergencia después de {} iteraciones").format(cont))
         return ("No hubo convergencia después de {} iteraciones").format(cont)
-    print(resp)
     return(resp)

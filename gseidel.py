@@ -11,7 +11,6 @@ def gauss_seidel (A,b,kMax=50):
                     continue
                 sum += A[i,j]*x[j]
             x[i] = (b[i]-sum)/A[i,i]
-            print(x)
     return x.reshape(-1,1)
 
 # n = 5

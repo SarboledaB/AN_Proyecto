@@ -39,7 +39,6 @@ def lagrange(x,y,num_puntos=100):
 x = np.linspace(-np.pi, np.pi, 4)
 y = np.array([np.sin(i) for i in x])
 pol = lagrange(x, y)
-print(pol)
 # f = '{}*x**3 + {}*x**2 + {}*x**1 + {}'.format(pol[0],pol[1],pol[2],pol[3])
 # f = parser.parse(f)
 
