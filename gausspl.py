@@ -2,7 +2,7 @@ import numpy as np
 from sustregr import sustregr
 
 def gausspl(A, b):
-    n = a.shape[0]
+    n = A.shape[0]
     M = np.insert(A, A.shape[0],b,axis=1).astype(float)
     
     for i in range(0,n-1):
