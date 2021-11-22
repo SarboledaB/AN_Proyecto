@@ -32,24 +32,19 @@ def lagrange(x,y,num_puntos=100):
 
 
     #%Entrega de resultados
-    pol=np.dot(y,L); 
-    return pol
+    pol=np.dot(y,L);
+    f = ""
+    for i in range(len(pol)):
+        f += '+'+str(pol[i])+'*x**'+str(len(pol)-i-1)
+    f = parser.parse(f)
+
+    xr = np.linspace(min(x), max(x), num_puntos)
+    yr = np.array([f.evaluate({'x': i}) for i in xr])
+    # Gráfica
+    plt.style.use('ggplot')
+    plt.plot(xr, yr)
+    plt.scatter(x, y)
+    plt.legend(['Lagrange', 'Datos'], loc='best')
+    plt.show()
     
-# Datos
-x = np.linspace(-np.pi, np.pi, 4)
-y = np.array([np.sin(i) for i in x])
-pol = lagrange(x, y)
-print(pol)
-# f = '{}*x**3 + {}*x**2 + {}*x**1 + {}'.format(pol[0],pol[1],pol[2],pol[3])
-# f = parser.parse(f)
-
-# xr = np.linspace(-np.pi, np.pi, 10)
-# yr = np.array([f.evaluate({'x': i}) for i in xr])
-
-
-# # Gráfica
-# plt.style.use('ggplot')
-# plt.plot(xr, yr)
-# plt.scatter(x, y)
-# plt.legend(['Lagrange', 'Datos'], loc='best')
-# plt.show()
+    return pol

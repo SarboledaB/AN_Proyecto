@@ -22,5 +22,4 @@ def newton(f, df, x_0, Nmax, xtol):
         if E < xtol:
             print (x, E, i)
             return x, E, i
-    print(("No hubo convergencia después de {} iteraciones").format(Nmax))
     return ("No hubo convergencia después de {} iteraciones").format(Nmax)

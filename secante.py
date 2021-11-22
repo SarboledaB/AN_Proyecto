@@ -21,7 +21,5 @@ def secante(f, x0, x1, Nmax, tol=1.0e-6):
         x1=xact
         f1=fact
     if cont == Nmax:
-        print (("No se encontró el intervalo después de {} iteraciones").format(cont))
         return ("No se encontró el intervalo después de {} iteraciones").format(cont)
-    print (x1)
     return x1

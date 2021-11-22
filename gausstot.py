@@ -1,7 +1,7 @@
 import numpy as np
 from sustregr import sustregr
 
-def gausspar(A, b):
+def gausstot(A, b):
     n = A.shape[0]
     M = np.insert(A, A.shape[0],b,axis=1).astype(float)
     camb = []
@@ -21,7 +21,6 @@ def gausspar(A, b):
     x = sustregr(M) 
     for i in range(len(camb)-1,-1,-1):
         x[[camb[i][0],camb[i][1]]]=x[[camb[i][1],camb[i][0]]]
-        
     return x
     
 # a = np.array([[2,3,1],

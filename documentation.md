@@ -278,7 +278,7 @@ print a
 print x
 ``` 
         
-### Gauss partial.
+### Gauss partial pivot.
 In each stage k it is sought that akk (or the pivot) is of greater possible magnitude (absolute value) compared to others
 values ​​in column k that are below akk.
 
@@ -328,7 +328,7 @@ print a
 print x
 ```   
 
-### Gauss total.
+### Gauss total pivot.
 In each stage k it is sought that akk (or the pivot) is of greater possible magnitude (absolute value) compared to others
 elements that are not part of the rows from F1 to Fk −1 or of the columns from C1 to Ck −1.
 
@@ -480,7 +480,7 @@ print table
 
 ## Interpolation.
 
-### Vandarmonde.
+### Vandermonde.
 
     ```bash
         

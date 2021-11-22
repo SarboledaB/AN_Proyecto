@@ -5,7 +5,7 @@ in this first window we will find the different categories of the methods:
 
 - Numerical solution of nonlinear equations.
 - Solution of systems of linear equations.
-- interpolation.
+- Interpolation.
 
 ![Alt text](images\Captura.PNG?raw=true "Optional Title")
 
