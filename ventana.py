@@ -13,11 +13,12 @@ from raices_multiples import entrada as raicesmlps
 from newton import entrada as newton
 from gausspl import gausspl
 from gausspar import gausspar
-from gausstot import gausspar as gausstot
+from gausstot import gausstot
 from lusimpl import lusimpl
 from lupar import lupar
 from jacobi import entrada as jacobi
 from gseidel import gauss_seidel
+from lagrange import lagrange
 
 def inicio():
     #intrucciones
@@ -89,7 +90,7 @@ def createNewWindow3():
     canvas.grid(columnspan=2, rowspan=5)
     boton18 = Button(newWindow,text="Vandermonde", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: vandermonde())
     boton19 = Button(newWindow,text="Diferencias Divididas", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: diferenciasDiv())
-    boton20 = Button(newWindow,text="Lagrange", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: lagrange())
+    boton20 = Button(newWindow,text="Lagrange", bg="SkyBlue", fg="black", width=35, height=2, command = lambda: lagrange_v())
 
     boton18.grid(column=0, row=1, columnspan=2)
     boton19.grid(column=0,row=3, columnspan=2)
@@ -345,78 +346,185 @@ def gausSimple():
 def gausPP():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=10, rowspan=11)
     
-    Label(newWindow, text="Matriz").grid(column=0,row=1)
-    matriz =Entry(newWindow)
-    matriz.grid(column=1,row=1)
+    Label(newWindow, text="Incognitas").grid(column=0,row=1)
+    incognita = Entry(newWindow)
+    incognita.grid(column=1,row=1)
+    matriz = []
+    vector = []
+    def genMatriz (x):
+        for i in range(x):
+            Label(newWindow, text="=").grid(column=x,row=i+3, sticky="w")
+            a = [0]*x
+            for j in range(x):
+                casilla = Entry(newWindow, width=10)
+                casilla.grid(column=j, row=i+3)
+                a[j] = casilla
+            matriz.append(a)
+            vectorr = Entry(newWindow, width=7)
+            vector.append(vectorr)
+            vectorr.grid(column=x+1, row=i+3, sticky="e")
+            
+        array = np.array(matriz)
+        
+    generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
+    generar.grid(column=0, row=2, columnspan=10)
     
-    Label(newWindow, text="Vector").grid(column=0,row=2)
-    vector = Entry(newWindow)
-    vector.grid(column=1,row=2)
+    def obValores (m):
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[i][j].get())
+                c[i,j] = a
+            b = float(vector[i].get())
+            d[i] = b
+        gausspar(c,d)
     
     resultado = ""
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gausspar(matriz.get(),float(vector.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
+    boton.grid(column=0, row=10, columnspan=10)
+    #gausspl(matriz.get(),float(vector.get()))
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
     
 def gausPT():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=10, rowspan=11)
     
-    Label(newWindow, text="matriz").grid(column=0,row=1)
-    matriz =Entry(newWindow)
-    matriz.grid(column=1,row=1)
+    Label(newWindow, text="Incognitas").grid(column=0,row=1)
+    incognita = Entry(newWindow)
+    incognita.grid(column=1,row=1)
+    matriz = []
+    vector = []
+    def genMatriz (x):
+        for i in range(x):
+            Label(newWindow, text="=").grid(column=x,row=i+3, sticky="w")
+            a = [0]*x
+            for j in range(x):
+                casilla = Entry(newWindow, width=10)
+                casilla.grid(column=j, row=i+3)
+                a[j] = casilla
+            matriz.append(a)
+            vectorr = Entry(newWindow, width=7)
+            vector.append(vectorr)
+            vectorr.grid(column=x+1, row=i+3, sticky="e")
+            
+        array = np.array(matriz)
+        
+    generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
+    generar.grid(column=0, row=2, columnspan=10)
     
-    Label(newWindow, text="Vector").grid(column=0,row=2)
-    vector = Entry(newWindow)
-    vector.grid(column=1,row=2)
+    def obValores (m):
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[i][j].get())
+                c[i,j] = a
+            b = float(vector[i].get())
+            d[i] = b
+        gausstot(c,d)
     
     resultado = ""
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == gausstot(matriz.get(),float(vector.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
+    boton.grid(column=0, row=10, columnspan=10)
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
     
 def factorizacionLuSimple():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=10, rowspan=11)
     
-    Label(newWindow, text="matriz").grid(column=0,row=1)
-    matriz =Entry(newWindow)
-    matriz.grid(column=1,row=1)
+    Label(newWindow, text="Incognitas").grid(column=0,row=1)
+    incognita = Entry(newWindow)
+    incognita.grid(column=1,row=1)
+    matriz = []
+    vector = []
+    def genMatriz (x):
+        for i in range(x):
+            Label(newWindow, text="=").grid(column=x,row=i+3, sticky="w")
+            a = [0]*x
+            for j in range(x):
+                casilla = Entry(newWindow, width=10)
+                casilla.grid(column=j, row=i+3)
+                a[j] = casilla
+            matriz.append(a)
+            vectorr = Entry(newWindow, width=7)
+            vector.append(vectorr)
+            vectorr.grid(column=x+1, row=i+3, sticky="e")
+            
+        array = np.array(matriz)
+        
+    generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
+    generar.grid(column=0, row=2, columnspan=10)
     
-    Label(newWindow, text="Vector").grid(column=0,row=2)
-    vector = Entry(newWindow)
-    vector.grid(column=1,row=2)
+    def obValores (m):
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[i][j].get())
+                c[i,j] = a
+            b = float(vector[i].get())
+            d[i] = b
+        lusimpl(c,d)
     
     resultado = ""
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == lusimpl(matriz.get(),float(vector.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
+    boton.grid(column=0, row=10, columnspan=10)
+    #gausspl(matriz.get(),float(vector.get()))
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
     
 def factorizacionLuParcial():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=10, rowspan=11)
     
-    Label(newWindow, text="matriz").grid(column=0,row=1)
-    matriz =Entry(newWindow)
-    matriz.grid(column=1,row=1)
+    Label(newWindow, text="Incognitas").grid(column=0,row=1)
+    incognita = Entry(newWindow)
+    incognita.grid(column=1,row=1)
+    matriz = []
+    vector = []
+    def genMatriz (x):
+        for i in range(x):
+            Label(newWindow, text="=").grid(column=x,row=i+3, sticky="w")
+            a = [0]*x
+            for j in range(x):
+                casilla = Entry(newWindow, width=10)
+                casilla.grid(column=j, row=i+3)
+                a[j] = casilla
+            matriz.append(a)
+            vectorr = Entry(newWindow, width=7)
+            vector.append(vectorr)
+            vectorr.grid(column=x+1, row=i+3, sticky="e")
+            
+        array = np.array(matriz)
+        
+    generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
+    generar.grid(column=0, row=2, columnspan=10)
     
-    Label(newWindow, text="Vector").grid(column=0,row=2)
-    vector = Entry(newWindow)
-    vector.grid(column=1,row=2)
+    def obValores (m):
+        c = np.zeros((m,m))
+        d = np.zeros(m)
+        for i in range(m):
+            for j in range(m):
+                a = float(matriz[i][j].get())
+                c[i,j] = a
+            b = float(vector[i].get())
+            d[i] = b
+        lupar(c,d)
     
     resultado = ""
     
-    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: resultado == lupar(matriz.get(),float(vector.get())))
-    boton.grid(column=0, row=6, columnspan=2)
-    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=7, columnspan=2)
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
+    boton.grid(column=0, row=10, columnspan=10)
+    #gausspl(matriz.get(),float(vector.get()))
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
     
 def jacobi():
     newWindow = tk.Toplevel(ventana_principal)
@@ -478,10 +586,45 @@ def diferenciasDiv():
     canvas = tk.Canvas(newWindow, width=400, height=450)
     canvas.grid(columnspan=2, rowspan=5)
     
-def lagrange():
+def lagrange_v():
     newWindow = tk.Toplevel(ventana_principal)
     canvas = tk.Canvas(newWindow, width=400, height=450)
-    canvas.grid(columnspan=2, rowspan=5)
+    canvas.grid(columnspan=10, rowspan=11)
+    
+    Label(newWindow, text="Puntos").grid(column=0,row=1)
+    incognita = Entry(newWindow)
+    incognita.grid(column=1,row=1)
+    vectorx = []
+    vectory = []
+    def genMatriz (x):
+        for i in range(x):
+            Label(newWindow, text="X").grid(column=0,row=2, sticky="w")
+            Label(newWindow, text="Y").grid(column=1,row=2, sticky="w")
+            vectora = Entry(newWindow, width=7)
+            vectorb = Entry(newWindow, width=7)
+            vectorx.append(vectora)
+            vectory.append(vectorb)
+            vectora.grid(column=0, row=i+3, sticky="e")
+            vectorb.grid(column=1, row=i+3, sticky="e")
+        
+    generar = Button(newWindow, text="Generar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: genMatriz(int(incognita.get())))
+    generar.grid(column=0, row=2, columnspan=10)
+    
+    def obValores (m):
+        x = np.zeros(m)
+        y = np.zeros(m)
+        for i in range(m):
+            x[i] = float(vectorx[i].get())
+            y[i] = float(vectory[i].get())
+        lagrange(x,y)
+    
+    resultado = ""
+    
+    boton = Button(newWindow, text="Iniciar", bg="SkyBlue", fg="black", width=35, height=2, command= lambda: obValores(int(incognita.get())))
+    boton.grid(column=0, row=10, columnspan=10)
+    #gausspl(matriz.get(),float(vector.get()))
+    Label(newWindow, text='{}'.format(resultado)).grid(column=0,row=11, columnspan=2)
+    
     
 str = ''
 pestas_color="DarkGrey"

@@ -15,7 +15,7 @@ from py_expression_eval import Parser
 
 parser = Parser()
 
-def vandermonde (x,y):
+def vandermonde (x,y, num_puntos=100):
 
     #Inicializacion
     n = len(x)
@@ -29,23 +29,17 @@ def vandermonde (x,y):
     #Entrega de resultados
     Coef = np.linalg.solve(A,y)
     
+    f = ""
+    for i in range(len(Coef)):
+        f += '+'+str(Coef[i])+'*x**'+str(len(Coef)-i-1)
+    f = parser.parse(f)
+
+    xr = np.linspace(-np.pi, np.pi, num_puntos)
+    yr = np.array([f.evaluate({'x': i}) for i in xr])
+    # Gráfica
+    plt.style.use('ggplot')
+    plt.plot(xr, yr)
+    plt.scatter(x, y)
+    plt.legend(['Lagrange', 'Datos'], loc='best')
     return Coef
-    
-# # Datos
-# x = np.linspace(-np.pi, np.pi, 4)
-# y = np.array([np.sin(i) for i in x])
-# pol = vandermonde(x, y)
-# print(pol)
-# f = '{}*x**3 + {}*x**2 + {}*x**1 + {}'.format(pol[0],pol[1],pol[2],pol[3])
-# f = parser.parse(f)
-
-# xr = np.linspace(-np.pi, np.pi, 10)
-# yr = np.array([f.evaluate({'x': i}) for i in xr])
-
-
-# # Gráfica
-# plt.style.use('ggplot')
-# plt.plot(xr, yr)
-# plt.scatter(x, y)
-# plt.legend(['Lagrange', 'Datos'], loc='best')
-# plt.show()
+    plt.show()
