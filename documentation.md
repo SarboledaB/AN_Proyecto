@@ -476,16 +476,83 @@ while error>tol & i<iter
 end while
 print table
 ``` 
+### factoring LU
+If we can carry out Gaussian elimination in the system Ax = b
+without row exchanges and such that the resulting elements
+on the diagonal are different from 0, then we can factor the
+matrix A in the product of a lower triangular matrix L and a
+upper triangular matrix U (A = LU). Where L, U are arranged
+as stated before.
+
+```bash
+in A, b
+n = length(A)
+L = diagonal(n)
+U = identity((n,n))
+M = A
+for i until n-1
+    for j until i+1 to n
+        if M[j,i] != 0 then
+            L[j,i] = M[j,i]/M[i,i]
+            M[j,i:n] = M[j,i:n]-(M[j,i]/M[i,i])*M[i,i:n]
+    U[i,i:n]=M[i,i:n]
+    U[i+1,i+1:n]=M[i+1,i+1:n]
+
+U[n-1,n-1]=M[n-1,n-1]
+
+L = augmentedMatrix (L,b)
+z = sustprgr(L)
+U = augmentedMatrix (U,z)
+x = sustregr(U)
+print(z)
+``` 
+### factoring LU partial pivot
+Suppose that the system Ax = b can be solved using
+Gaussian elimination with partial pivoting. So there is a permutation matrix P such that the product PA can be
+factored as the product of a lower triangular matrix L and
+an upper triangular matrix U. That is,
+
+PA = LU
+
+The matrix L is constructed based on the multipliers located
+according to their respective indices and with 1s on the diagonal, and the matrix U
+is the matrix resulting from elimination. The final system is:
+
+LUx = Pb
+
+```bash
+in A, b
+n = length(A)
+L = diagonal(n)
+U = identity((n,n))
+M = A
+for i in range(n-1):
+        [a,b] = max(M[i:,i:n])
+        if a[0] != i:
+            M[[i,a[0]],:]=M[[a[0],i],:]
+            P[[i,a[0]],:]=P[[a[0],i],:]
+            if i > 0:
+                L[[i,a[0]],0:i]=L[[a[0],i],0:i]
+        for j in range(i+1,n):
+            if M[j,i] != 0:
+                L[j,i]=M[j,i]/M[i,i]
+                M[j,i:n]=M[j,i:n]-(M[j,i]/M[i,i])*M[i,i:n]
+        U[i,i:n]=M[i,i:n];
+        U[i+1,i+1:n]=M[i+1,i+1:n]
+
+    U[n-1,n-1]=M[n-1,n-1]
+
+L = augmentedMatrix (L,b)
+z = sustprgr(L)
+U = augmentedMatrix (U,z)
+x = sustregr(U)
+print(z)
+``` 
+
         
 
 ## Interpolation.
-
-### Vandermonde.
-
-    ```bash
-        
-    ``` 
-          
+      
 
 ### Lagrange.
 
