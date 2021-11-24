@@ -38,7 +38,7 @@ def lagrange(x,y,num_puntos=100):
         f += '+'+str(pol[i])+'*x**'+str(len(pol)-i-1)
     f = parser.parse(f)
 
-    xr = np.linspace(-np.pi, np.pi, num_puntos)
+    xr = np.linspace(min(x), max(x), num_puntos)
     yr = np.array([f.evaluate({'x': i}) for i in xr])
     # Gráfica
     plt.style.use('ggplot')
