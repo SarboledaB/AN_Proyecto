@@ -10,21 +10,18 @@ by:
 - Pip
 
 ## How install
+Create a virtual environment acording to your operating system, then do as follows:
 
-### Windows:
- ```bash
-    $ pip intall -r ./requirements.txt
-    $ python ./ventana.py
+```bash
+$ pip intall -r ./requirements.txt
+$ pyinstaller --windowed source/main.py
  ``` 
-### Mac OS:
- ```bash
-    $ pip intall -r ./requirements.txt
-    $ python ./ventana.py
+
+Or if you want to generate a portable file:
+
+```bash
+$ pip intall -r ./requirements.txt
+$ pyinstaller --onefile --windowed source/main.py
  ``` 
-### Linux:
- ```bash
-    $ pip intall -r ./requirements.txt
-    $ python ./ventana.py
- ```                                                            
 
-
+Execute the main.exe file in 'dist' directory
